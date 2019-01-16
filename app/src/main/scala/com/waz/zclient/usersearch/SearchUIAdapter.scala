@@ -185,7 +185,7 @@ class SearchUIAdapter(adapterCallback: SearchUIAdapter.Callback)
         if (currentUserIsAdmin && !noServices) addManageServicesButton()
         addIntegrations()
       } else {
-        if (filter.currentValue.forall(_.isEmpty)){
+        if (filter.currentValue.forall(_.isEmpty) && !userAccountsController.isExternalPartner.currentValue.get){
           addGroupCreationButton()
           addGuestRoomCreationButton()
         }
@@ -194,7 +194,7 @@ class SearchUIAdapter(adapterCallback: SearchUIAdapter.Callback)
         addConnections()
       }
     } else  {
-      if (filter.currentValue.forall(_.isEmpty))
+      if (filter.currentValue.forall(_.isEmpty) && !userAccountsController.isExternalPartner.currentValue.get)
         addGroupCreationButton()
       addTopPeople()
       addContacts()
